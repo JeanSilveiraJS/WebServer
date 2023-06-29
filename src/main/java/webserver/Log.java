@@ -11,7 +11,7 @@ public class Log {
 
     static {
         try {
-            log = new FileOutputStream("log.txt");
+            log = new FileOutputStream("log/log.txt", true);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
