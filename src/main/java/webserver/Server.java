@@ -9,7 +9,7 @@ public class Server {
 
     public static void main(String[] args) throws IOException {
         try {
-            ServerSocket ss = new ServerSocket(80);
+            ServerSocket ss = new ServerSocket(8080);
 
             while (true) {
                 System.out.println("\nMain| Aguardando requisição...");
