@@ -52,7 +52,7 @@ public class RequestThread implements Runnable {
 
                 System.out.println(req.getThreadId() + "| Recurso enviado");
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
 
@@ -62,7 +62,7 @@ public class RequestThread implements Runnable {
             ss.close();
             System.out.println(req.getThreadId() + "| Conexão fechada ---\n");
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -71,8 +71,9 @@ public class RequestThread implements Runnable {
         try {
             return in.read(buffer);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
+        return 0;
     }
 
     private String getSourceDir() {
@@ -126,7 +127,7 @@ public class RequestThread implements Runnable {
             try {
                 return new FileInputStream(f);
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         } else {
             byte[] notFound = "404 NOT FOUND\n\n".getBytes(StandardCharsets.UTF_8);
@@ -135,18 +136,20 @@ public class RequestThread implements Runnable {
                 out.write(notFound);
                 System.out.println(req.getThreadId() + "| 404 NOT FOUND");
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
             return null;
         }
+        return null;
     }
 
     private int readFileToBuffer(InputStream file, byte[] buffer) {
         try {
             return file.read(buffer);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
+        return 0;
     }
 
     private byte[] refactorOutput(ByteArrayOutputStream byteArrayOutputFile) {

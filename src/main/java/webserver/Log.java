@@ -7,13 +7,13 @@ import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 
 public class Log {
-    private static final OutputStream log;
+    private static OutputStream log;
 
     static {
         try {
             log = new FileOutputStream("log/log.txt", true);
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -22,7 +22,7 @@ public class Log {
             try {
                 log.write(str.getBytes(StandardCharsets.UTF_8));
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             }
         }
     }
