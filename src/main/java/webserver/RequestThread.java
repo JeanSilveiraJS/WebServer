@@ -23,7 +23,7 @@ public class RequestThread implements Runnable {
         in = ss.getInputStream();
         out = ss.getOutputStream();
 
-        //req.setThreadId(this.getName());
+        req.setThreadId(this.toString().substring(23));
         req.setRequestIp(ss.getInetAddress().toString());
 
         //System.out.println("Main| ID: " + req.getThreadId());
